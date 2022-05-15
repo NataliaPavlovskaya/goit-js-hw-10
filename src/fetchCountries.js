@@ -5,4 +5,4 @@ export function fetchCountries(name) {
   return fetch(`${BASE_URL}${name}?${fieldsName}`)
     .then(response => response.json())
     .catch(error => console.log(error))
-}
+};

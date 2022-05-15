@@ -2,6 +2,7 @@ import './css/styles.css';
 
 import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
+
 import { fetchCountries } from './fetchCountries';
 
 const DEBOUNCE_DELAY = 300;
@@ -26,6 +27,7 @@ function onCountryInput() {
         refs.countryList.innerHTML = ''
         refs.countryInfo.innerHTML = ''
       if (countries.length === 1) {
+    
         refs.countryList.insertAdjacentHTML('beforeend', renderCountryList(countries))
         refs.countryInfo.insertAdjacentHTML('beforeend', renderCountryInfo(countries))
       } else if (countries.length >= 10) {
@@ -66,6 +68,7 @@ function renderCountryInfo(countries) {
   return markup;
 }
 
+
 function alertWrongName() {
   Notiflix.Notify.failure('Oops, there is no country with that name')
 }
@@ -74,65 +77,3 @@ function alertTooManyMatches() {
   Notiflix.Notify.info('Too many matches found. Please enter a more specific name.')
 }
 
-
-
-
-
-
-
-
-
-// const refs = {
-//     searchBox: document.querySelector('#search-box'),
-//     countryList: document.querySelector('.country-list'),
-//     countryInfo: document.querySelector('.country-info'),
-//   };
-
-//   refs.searchBox.addEventListener('input', debounce(handleSearch, DEBOUNCE_DELAY));
-
-
-// function clearData() {
-//     refs.countryList.innerHTML = '';
-//     refs.countryInfo.innerHTML = '';
-//   };
-
-// function handleSearch(event) {
-//     const inputValue = event.target.value.trim();
-//     if (inputValue === '') {
-//       clearData();
-//       return;
-//     }
-//     fetchCountries(inputValue)
-//       .then(countries => {
-//         if (countries.length > 10) {
-//           clearData();
-//           Notiflix.Notify.info('Too many matches found. Please enter a more specific query!');
-//           return;
-//         }
-//         else if (countries.length === 1) {
-//           const country = countries[0];
-//           refs.countryInfo.innerHTML = `
-//           <div class="info-title">
-//           <img src = "${country.flag}" alt = Flag of"${country.name}">
-//           <h1>${country.name}</h1>
-//           <p><span>Capital:</span> ${country.capital}</p>
-//           <p><span>Population:</span> ${country.population}</p>
-//           <p><span>Languages:</span> ${country.languages}</p>
-//           </div>
-//           `;
-//           refs.countriesList.innerHTML = '';
-//           return;
-//         }
-//         refs.countryInfo.innerHTML = '';
-//         refs.countriesList.innerHTML = countries.map(country => {
-//           return `
-//           <li>
-//           <span>${country.name}</span>
-//           </li>
-//           `;
-//         }).join('');
-//       })
-//       .catch(error => {
-//         Notiflix.Notify.failure('Oops, there is no country with that name');
-//       });
-//   }
